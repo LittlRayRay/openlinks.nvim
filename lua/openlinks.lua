@@ -31,7 +31,7 @@ M.openlink = function()
 	print("Successfully opened link: " .. link)
 end
 
-M.setup = function()
+M.setup = function(opts)
 	print("made it here")
 
 	vim.api.nvim_create_user_command("Openlink", function()
