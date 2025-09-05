@@ -1,7 +1,5 @@
 local M = {}
 
-local vim = vim
-
 local function get_link_under_cursor()
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 	local line = vim.api.nvim_get_current_line()
@@ -19,14 +17,15 @@ local function get_link_under_cursor()
 end
 
 M.setup = function()
+	print ("made it here") 
 	vim.api.nvim_create_user_command("Openlink", function()
-		link = get_link_under_cursor()
+		local link = get_link_under_cursor()
 		if link == nil then
 			print("No links under cursor")
 		end
 
 		os.execute(string.format("xdg-open %s", link))
-		print("successfully opened string")
+		print("Successfully opened link")
 	end)
 end
 
