@@ -26,7 +26,7 @@ M.setup = function()
 
 		os.execute(string.format("xdg-open %s", link))
 		print("Successfully opened link")
-	end)
+	end, {})
 end
 
 return M
