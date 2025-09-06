@@ -31,20 +31,20 @@ M.openlink = function()
 	print("Successfully opened link: " .. link)
 end
 
+print("made it here")
+
+vim.api.nvim_create_user_command("Openlink", function()
+	local link = get_link_under_cursor()
+	if not link then
+		print("No link under cursor")
+		return
+	end
+
+	-- escape URL properly
+	os.execute(string.format("xdg-open '%s' &> /dev/null 2>&1", link))
+	print("Successfully opened link: " .. link)
+end, {})
+
 M.setup = function(opts)
-	print("made it here")
-
-	vim.api.nvim_create_user_command("Openlink", function()
-		local link = get_link_under_cursor()
-		if not link then
-			print("No link under cursor")
-			return
-		end
-
-		-- escape URL properly
-		os.execute(string.format("xdg-open '%s' &", link))
-		print("Successfully opened link: " .. link)
-	end, {})
 end
-
 return M
